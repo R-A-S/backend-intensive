@@ -1,9 +1,11 @@
-/* Global teardown modle.
-**
-** This module exports an async function that is triggered
-** once after all test suites.
-**
-*/
+/* eslint-disable no-console */
+/* eslint-disable require-await */
+/* Global teardown module.
+ **
+ ** This module exports an async function that is triggered
+ ** once after all test suites.
+ **
+ */
 
 const chalk = require('chalk');
 

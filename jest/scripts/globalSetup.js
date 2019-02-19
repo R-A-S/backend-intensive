@@ -1,9 +1,11 @@
-/* Global setup modle.
-**
-** This module exports an async function that is triggered
-** once before all test suites.
-**
-*/
+/* eslint-disable require-await */
+/* eslint-disable no-console */
+/* Global setup module.
+ **
+ ** This module exports an async function that is triggered
+ ** once before all test suites.
+ **
+ */
 
 const chalk = require('chalk');
 
