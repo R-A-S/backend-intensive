@@ -4,6 +4,7 @@ import dg from 'debug';
 const route = express.Router();
 const debug = dg('router:classes');
 
+
 route
     .get('/', (req, res) => {
         try {
