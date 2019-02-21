@@ -2,7 +2,7 @@
 import express from 'express';
 
 // Handlers
-import * as pupils from './pupils';
+import * as pupils from './';
 import * as person from './person';
 
 const route = express.Router();
@@ -15,4 +15,4 @@ route.post('/:personId', person.post);
 route.put('/:personId', person.put);
 route.delete('/:personId', person.remove);
 
-export { route as pupilsRoute };
+export { route as pupils };

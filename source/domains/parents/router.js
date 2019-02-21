@@ -21,4 +21,4 @@ route.post('/:parentId/pupils/:personId', person.post);
 route.put('/:parentId/pupils/:personId', person.put);
 route.delete('/:parentId/pupils/:personId', person.remove);
 
-export { route as parentsRoute };
+export { route as parents };

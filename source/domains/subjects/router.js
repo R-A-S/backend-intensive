@@ -2,7 +2,7 @@
 import express from 'express';
 
 // Handlers
-import * as subject from './subject';
+import * as subject from './';
 import * as seasons from './seasons';
 import * as season from './seasons/season';
 import * as lessons from './seasons/lessons';
@@ -31,4 +31,4 @@ route.post('/subjects/:subjectsId/seasons/:seasonId/lessons/:lessonId', lesson.p
 route.put('/subjects/:subjectsId/seasons/:seasonId/lessons/:lessonId', lesson.put);
 route.delete('/subjects/:subjectsId/seasons/:seasonId/lessons/:lessonId', lesson.remove);
 
-export { route as subjectsRoute };
+export { route as subjects };

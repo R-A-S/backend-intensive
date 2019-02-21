@@ -2,7 +2,7 @@
 import express from 'express';
 
 // Handlers
-import * as classes from './classes';
+import * as classes from './';
 import * as classId from './class';
 import * as gradebook from './gradebook';
 
@@ -21,4 +21,4 @@ route.post('/:classId/gradebook', gradebook.post);
 route.put('/:classId/gradebook', gradebook.put);
 route.delete('/:classId/gradebook', gradebook.remove);
 
-export { route as classesRoute };
+export { route as classes };

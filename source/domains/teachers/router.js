@@ -2,7 +2,7 @@
 import express from 'express';
 
 // Handlers
-import * as teachers from './teachers';
+import * as teachers from './';
 import * as subjects from './subjects';
 
 const route = express.Router();
@@ -13,4 +13,4 @@ route.post('/', teachers.post);
 route.get('/:teacherId/subjects', subjects.get);
 route.post('/:teacherId/subjects', subjects.post);
 
-export { route as teachersRoute };
+export { route as teachers };
