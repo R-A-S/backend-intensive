@@ -6,19 +6,22 @@ import * as classes from './';
 import * as classId from './class';
 import * as gradebook from './gradebook';
 
+// Instruments
+import { authenticate as auth } from '../../middleware/authenticate';
+
 const route = express.Router();
 
 route.get('/', classes.get);
-route.post('/', classes.post);
+route.post('/', auth, classes.post);
 
-route.get('/:classId', classId.get);
-route.post('/:classId', classId.post);
-route.put('/:classId', classId.put);
-route.delete('/:classId', classId.remove);
+route.get('/:classId', auth, classId.get);
+route.post('/:classId', auth, classId.post);
+route.put('/:classId', auth, classId.put);
+route.delete('/:classId', auth, classId.remove);
 
-route.get('/:classId/gradebook', gradebook.get);
-route.post('/:classId/gradebook', gradebook.post);
-route.put('/:classId/gradebook', gradebook.put);
-route.delete('/:classId/gradebook', gradebook.remove);
+route.get('/:classId/gradebook', auth, gradebook.get);
+route.post('/:classId/gradebook', auth, gradebook.post);
+route.put('/:classId/gradebook', auth, gradebook.put);
+route.delete('/:classId/gradebook', auth, gradebook.remove);
 
 export { route as classes };
