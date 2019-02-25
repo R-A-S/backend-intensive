@@ -5,7 +5,7 @@ import express from 'express';
 import * as domains from './domains';
 
 // Instruments
-import { devLogger } from './helpers';
+import { devLogger, requireJsonContent } from './helpers';
 
 const app = express();
 
@@ -14,6 +14,8 @@ app.use(
         limit: '10kb',
     }),
 );
+
+app.use(requireJsonContent());
 
 if (process.env.NODE_ENV === 'development') {
     app.use((req, res, next) => {
