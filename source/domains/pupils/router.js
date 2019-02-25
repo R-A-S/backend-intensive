@@ -5,14 +5,17 @@ import express from 'express';
 import * as pupils from './';
 import * as person from './person';
 
+// Instruments
+import { authenticate } from '../../helpers';
+
 const route = express.Router();
 
-route.get('/', pupils.get);
-route.post('/', pupils.post);
+route.get('/', [ authenticate ], pupils.get);
+route.post('/', [ authenticate ], pupils.post);
 
-route.get('/:personId', person.get);
-route.post('/:personId', person.post);
-route.put('/:personId', person.put);
-route.delete('/:personId', person.remove);
+route.get('/:personId', [ authenticate ], person.get);
+route.post('/:personId', [ authenticate ], person.post);
+route.put('/:personId', [ authenticate ], person.put);
+route.delete('/:personId', [ authenticate ], person.remove);
 
 export { route as pupils };
