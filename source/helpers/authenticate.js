@@ -1,8 +1,9 @@
 import { getPassword } from './getPassword';
 
+const password = getPassword();
+
 export const authenticate = (req, res, next) => {
     const { authorization } = req.headers;
-    const password = getPassword();
 
     if (authorization === password) {
         next();
