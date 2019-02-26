@@ -15,7 +15,7 @@ app.use(
     }),
 );
 
-app.use(requireJsonContent());
+app.use(requireJsonContent);
 
 if (process.env.NODE_ENV === 'development') {
     app.use((req, res, next) => {
