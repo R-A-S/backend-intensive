@@ -4,8 +4,8 @@ import express from 'express';
 // Routes
 import * as domains from './domains';
 
-//Instruments
-import { logger } from './middleware/winston';
+// Instruments
+import { devLogger, requireJsonContent } from './helpers';
 
 const app = express();
 
@@ -15,10 +15,17 @@ app.use(
     }),
 );
 
-app.use((req, _res, next) => {
-    logger.debug(`${req.method} : ${JSON.stringify(req.body)}`);
-    next();
-});
+app.use(requireJsonContent);
+
+if (process.env.NODE_ENV === 'development') {
+    app.use((req, res, next) => {
+        const body
+            = req.method === 'GET' ? 'Body not supported for GET' : JSON.stringify(req.body, null, 2);
+
+        devLogger.debug(`${req.method}\n${body}`);
+        next();
+    });
+}
 
 app.use('/api/teachers', domains.teachers);
 app.use('/api/pupils', domains.pupils);

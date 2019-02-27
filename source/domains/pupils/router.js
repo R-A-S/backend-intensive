@@ -6,16 +6,16 @@ import * as pupils from './';
 import * as person from './person';
 
 // Instruments
-import { authenticate as auth } from '../../middleware/authenticate';
+import { authenticate } from '../../helpers';
 
 const route = express.Router();
 
-route.get('/', auth, pupils.get);
-route.post('/', auth, pupils.post);
+route.get('/', [ authenticate ], pupils.get);
+route.post('/', [ authenticate ], pupils.post);
 
-route.get('/:personId', auth, person.get);
-route.post('/:personId', auth, person.post);
-route.put('/:personId', auth, person.put);
-route.delete('/:personId', auth, person.remove);
+route.get('/:personId', [ authenticate ], person.get);
+route.post('/:personId', [ authenticate ], person.post);
+route.put('/:personId', [ authenticate ], person.put);
+route.delete('/:personId', [ authenticate ], person.remove);
 
 export { route as pupils };

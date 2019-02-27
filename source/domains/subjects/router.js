@@ -9,29 +9,29 @@ import * as lessons from './seasons/lessons';
 import * as lesson from './seasons/lessons/lesson';
 
 // Instruments
-import { authenticate as auth } from '../../middleware/authenticate';
+import { authenticate } from '../../helpers';
 
 const route = express.Router();
 
 route.get('/:subjectsId', subject.get);
-route.post('/:subjectsId', auth, subject.post);
-route.put('/:subjectsId', auth, subject.put);
-route.delete('/:subjectsId', auth, subject.remove);
+route.post('/:subjectsId', [ authenticate ], subject.post);
+route.put('/:subjectsId', [ authenticate ], subject.put);
+route.delete('/:subjectsId', [ authenticate ], subject.remove);
 
 route.get('/:subjectsId/seasons', seasons.get);
-route.post('/:subjectsId/seasons', auth, seasons.post);
+route.post('/:subjectsId/seasons', [ authenticate ], seasons.post);
 
 route.get('/:subjectsId/seasons/:seasonId', season.get);
-route.post('/:subjectsId/seasons/:seasonId', auth, season.post);
-route.put('/:subjectsId/seasons/:seasonId', auth, season.put);
-route.delete('/:subjectsId/seasons/:seasonId', auth, season.remove);
+route.post('/:subjectsId/seasons/:seasonId', [ authenticate ], season.post);
+route.put('/:subjectsId/seasons/:seasonId', [ authenticate ], season.put);
+route.delete('/:subjectsId/seasons/:seasonId', [ authenticate ], season.remove);
 
 route.get('/:subjectsId/seasons/:seasonId/lessons', lessons.get);
-route.post('/:subjectsId/seasons/:seasonId/lessons', auth, lessons.post);
+route.post('/:subjectsId/seasons/:seasonId/lessons', [ authenticate ], lessons.post);
 
 route.get('/:subjectsId/seasons/:seasonId/lessons/:lessonId', lesson.get);
-route.post('/:subjectsId/seasons/:seasonId/lessons/:lessonId', auth, lesson.post);
-route.put('/:subjectsId/seasons/:seasonId/lessons/:lessonId', auth, lesson.put);
-route.delete('/:subjectsId/seasons/:seasonId/lessons/:lessonId', auth, lesson.remove);
+route.post('/:subjectsId/seasons/:seasonId/lessons/:lessonId', [ authenticate ], lesson.post);
+route.put('/:subjectsId/seasons/:seasonId/lessons/:lessonId', [ authenticate ], lesson.put);
+route.delete('/:subjectsId/seasons/:seasonId/lessons/:lessonId', [ authenticate ], lesson.remove);
 
 export { route as subjects };
