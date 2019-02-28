@@ -5,6 +5,7 @@ lesson-*/
 .vscode
 .idea
 coverage/
+logs/
 
 # files
 .DS_Store
