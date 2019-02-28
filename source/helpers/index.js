@@ -4,6 +4,8 @@ export { limiter } from './limiter';
 export { authenticate } from './authenticate';
 export { devLogger } from './logger';
 export { errorLogger } from './logger';
+export { validationLogger } from './logger';
+export { notFoundLogger } from './logger';
 export { requireJsonContent } from './requireJsonContent';
 export { NotFoundError } from './customErrors';
 export { ValidationError } from './customErrors';

@@ -5,7 +5,15 @@ import express from 'express';
 import * as domains from './domains';
 
 // Instruments
-import { devLogger, errorLogger, requireJsonContent, NotFoundError } from './helpers';
+import {
+    devLogger,
+    errorLogger,
+    validationLogger,
+    notFoundLogger,
+    requireJsonContent,
+    NotFoundError,
+    ValidationError,
+} from './helpers';
 
 const app = express();
 
@@ -41,8 +49,17 @@ app.all('*', function(req, _res, next) {
 if (process.env.NODE_ENV !== 'test') {
     // eslint-disable-next-line no-unused-vars
     app.use((error, _req, res, _next) => {
-        res.status(500).json({ message: error.message });
-        errorLogger.error(`${error.name}: ${error.message}`);
+        if (error.name === ValidationError) {
+            res.status(error.statusCode).json({ message: error.message });
+            validationLogger.error(error.message);
+        }
+        if (error.name === NotFoundError) {
+            res.status(error.statusCode).json({ message: error.message });
+            notFoundLogger.error(error.message);
+        } else {
+            res.status(500).json({ message: error.message });
+            errorLogger.error(`${error.name}: ${error.message}`);
+        }
     });
 }
 

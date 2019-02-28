@@ -14,11 +14,15 @@ export const devLogger = createLogger({
     transports: [ new transports.Console() ],
 });
 
-export const errorLogger = createLogger({
+const errorLogCreator = (logger) => createLogger({
     level:      'error',
-    format:     combine(timestamp(), printf(({ message, timestamp }) => `${timestamp} ${message}`)),
+    format:     combine(timestamp(), printf(({ timestamp, message }) => `${timestamp} ${message}`)),
     transports: [
-        new transports.File({ filename: 'logs/errors.log', level: 'error' }),
-        new transports.File({ filename: 'logs/combined.log', level: 'error' }),
+        new transports.File({ filename: `logs/${logger}.log` }),
+        new transports.File({ filename: 'logs/combined.log' }),
     ],
 });
+
+export const errorLogger = errorLogCreator('errors');
+export const validationLogger = errorLogCreator('validation_errors');
+export const notFoundLogger = errorLogCreator('not_found_errors');
