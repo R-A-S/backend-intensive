@@ -5,7 +5,7 @@ import express from 'express';
 import * as domains from './domains';
 
 // Instruments
-import { devLogger, requireJsonContent } from './helpers';
+import { devLogger, errorLogger, requireJsonContent } from './helpers';
 
 const app = express();
 
@@ -32,5 +32,13 @@ app.use('/api/pupils', domains.pupils);
 app.use('/api/parents', domains.parents);
 app.use('/api/classes', domains.classes);
 app.use('/api/subjects', domains.subjects);
+
+if (process.env.NODE_ENV !== 'test') {
+    // eslint-disable-next-line no-unused-vars
+    app.use((error, _req, res, _next) => {
+        res.status(500).json({ message: error.message });
+        errorLogger.error(`${error.name}: ${error.message}`);
+    });
+}
 
 export { app };

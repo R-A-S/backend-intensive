@@ -15,14 +15,19 @@ export const get = (req, res) => {
     }
 };
 
+
+// export const post = (req, res) => {
+//     debug(`${req.method} — ${req.originalUrl}`);
+
+//     try {
+//         const data = [];
+
+//         res.status(200).json({ data });
+//     } catch (error) {
+//         res.status(400).json({ message: error.message });
+//     }
+// };
+// eslint-disable-next-line no-unused-vars
 export const post = (req, res) => {
-    debug(`${req.method} — ${req.originalUrl}`);
-
-    try {
-        const data = [];
-
-        res.status(200).json({ data });
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
+    throw new Error('Test ERROR!!!☠');
 };
