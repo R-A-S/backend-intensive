@@ -1,13 +1,9 @@
 // Core
 import dg from 'debug';
 
-// Instruments
-import { getPassword } from '../../helpers';
-
 const debug = dg('router:auth');
-const key = getPassword();
 
-export const post = async (req, res) => {
+export const post = (req, res) => {
     debug(`${req.method} — ${req.originalUrl}`);
 
     try {
