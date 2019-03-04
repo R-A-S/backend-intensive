@@ -1,5 +1,6 @@
 // Core
 import express from 'express';
+import session from 'express-session';
 
 // Routes
 import * as domains from './domains';
@@ -11,17 +12,30 @@ import {
     notFoundLogger,
     validationLogger,
     requireJsonContent,
+    getPassword,
     NotFoundError,
 } from './helpers';
 
 const app = express();
+
+const sessionOptions = {
+    key:               'user',
+    secret:            getPassword(),
+    resave:            false,
+    rolling:           true,
+    saveUninitialized: false,
+    cookie:            {
+        httpOnly: true,
+        maxAge:   15 * 60 * 1000,
+    },
+};
 
 app.use(
     express.json({
         limit: '10kb',
     }),
 );
-
+app.use(session(sessionOptions));
 app.use(requireJsonContent);
 
 if (process.env.NODE_ENV === 'development') {
@@ -34,6 +48,7 @@ if (process.env.NODE_ENV === 'development') {
     });
 }
 
+app.use('/api/auth', domains.auth);
 app.use('/api/teachers', domains.teachers);
 app.use('/api/pupils', domains.pupils);
 app.use('/api/parents', domains.parents);
