@@ -9,7 +9,7 @@ db.customers.drop();
 db.orders.drop();
 
 const customers = [];
-for (let i = 0; i < 3000; i++) {
+for (let i = 0; i < 10; i++) {
     customers.push({
         name: {
             first: faker.fName(),
@@ -44,4 +44,4 @@ print('-----------------<<<<<<<<< DONE >>>>>>>>>>------------------');
 print('Orders count :', db.orders.count());
 print('Customers size :', db.customers.dataSize() / 1024, 'KB');
 print('Orders size :', db.orders.dataSize() / 1024, 'KB');
-print('Total size :', db.customers.dataSize() + db.orders.dataSize() / 1024, 'KB');
+print('Total size :', db.customers.dataSize() / 1024 + db.orders.dataSize() / 1024, 'KB');
