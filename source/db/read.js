@@ -1,5 +1,5 @@
 // mongo --host 18.195.151.104 --port 27017 < index.js
-// use rstoliarenko
+use rstoliarenko
 
 const customersCursor = db.customers.find();
 
