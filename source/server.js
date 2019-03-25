@@ -16,6 +16,9 @@ import {
     NotFoundError,
 } from './helpers';
 
+// DB
+import './db';
+
 const app = express();
 
 const sessionOptions = {
