@@ -1,1 +1,9 @@
 export { users } from './users';
+export { classes } from './classes';
+export { gradebooks } from './gradebooks';
+export { lessons } from './lessons';
+export { parents } from './parents';
+export { persons } from './persons';
+export { seasons } from './seasons';
+export { subjects } from './subjects';
+export { teachers } from './teachers';
