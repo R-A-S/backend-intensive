@@ -2,10 +2,16 @@ import mongoose from 'mongoose';
 
 // Document shape
 const schema = new mongoose.Schema({
-    hash:    String,
-    image:   String,
-    year:    Number,
-    class:   String,
+    hash:  String,
+    image: String,
+    year:  {
+        type:  Number,
+        index: true,
+    },
+    class: {
+        type:  String,
+        index: true,
+    },
     records: [
         {
             personHash:  mongoose.SchemaTypes.ObjectId,

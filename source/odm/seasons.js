@@ -16,5 +16,7 @@ const schema = new mongoose.Schema({
     created:     Date,
 });
 
+schema.index({ title: 'text', description: 'text' });
+
 // Collection
 export const seasons = mongoose.model('seasons', schema);

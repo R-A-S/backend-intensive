@@ -11,7 +11,10 @@ const schema = new mongoose.Schema({
     dateOfBirth: Date,
     emails:      [
         {
-            email:   String,
+            email: {
+                type:   String,
+                unique: true,
+            },
             primary: Boolean,
         },
     ],
@@ -36,6 +39,8 @@ const schema = new mongoose.Schema({
     description: String,
     created:     Date,
 });
+
+schema.index({ 'name.first': 1, 'name.last': 1 });
 
 // Collection
 export const parents = mongoose.model('parents', schema);

@@ -14,5 +14,7 @@ const schema = new mongoose.Schema({
     created:     Date,
 });
 
+schema.index({ title: 'text', description: 'text' });
+
 // Collection
 export const subjects = mongoose.model('subjects', schema);

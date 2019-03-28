@@ -2,11 +2,17 @@ import mongoose from 'mongoose';
 
 // Document shape
 const schema = new mongoose.Schema({
-    hash:       String,
-    order:      Number,
-    title:      String,
-    image:      String,
-    room:       Number,
+    hash:  String,
+    order: {
+        type:  Number,
+        index: true,
+    },
+    title: String,
+    image: String,
+    room:  {
+        type:  Number,
+        index: true,
+    },
     floor:      Number,
     gradebooks: [
         {
@@ -16,6 +22,8 @@ const schema = new mongoose.Schema({
     description: String,
     created:     Date,
 });
+
+schema.index({ title: 'text', description: 'text' });
 
 // Collection
 export const classes = mongoose.model('classes', schema);
