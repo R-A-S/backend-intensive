@@ -8,7 +8,6 @@ const schema = new mongoose.Schema({
     image:   { type: String },
     subject: { type: mongoose.Schema.Types.ObjectId },
     season:  { type: mongoose.Schema.Types.ObjectId },
-    created: { type: Date },
 });
 
 schema.index({ title: 1 }, { name: 'lessonsTitle' });

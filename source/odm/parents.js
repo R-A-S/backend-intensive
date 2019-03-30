@@ -34,7 +34,6 @@ const schema = new mongoose.Schema({
         },
     ],
     description: { type: String },
-    created:     { type: Date },
 });
 
 schema.index({ first: 1, last: -1 }, { name: 'names' });

@@ -17,7 +17,6 @@ const schema = new mongoose.Schema({
         },
     ],
     description: { type: String },
-    created:     { type: Date },
 });
 
 schema.index({ year: 1 });
