@@ -29,7 +29,7 @@ const schema = new mongoose.Schema(
         class:   { type: mongoose.Schema.Types.ObjectId },
         parents: [
             {
-                parent: { type: mongoose.Schema.Types.ObjectIdId },
+                parent: { type: mongoose.Schema.Types.ObjectId },
             },
         ],
         description: { type: String },

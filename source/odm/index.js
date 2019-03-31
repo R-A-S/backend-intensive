@@ -7,3 +7,4 @@ export { persons } from './persons';
 export { seasons } from './seasons';
 export { subjects } from './subjects';
 export { teachers } from './teachers';
+export { logs } from './logs';
