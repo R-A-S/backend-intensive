@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import dg from 'debug';
 
 const debug = dg('db');
+const DB = process.env.DB;
 
 const mongooseOptions = {
     promiseLibrary:    global.Promise,
@@ -16,12 +17,12 @@ const mongooseOptions = {
 };
 
 // mongodb://username:password@localhost:27017/users
-const connection = mongoose.connect('mongodb://localhost:27017/school', mongooseOptions);
+const connection = mongoose.connect(`mongodb://localhost:27017/${DB}`, mongooseOptions);
 
 connection
     .then(() => {
-        debug('DB connected');
+        debug(`DB '${DB}' connected`);
     })
     .catch(({ message }) => {
-        debug(`DB connectionError: ${message}`);
+        debug(`DB ${DB} connectionError: ${message}`);
     });
