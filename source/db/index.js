@@ -1,12 +1,16 @@
+// Core
 import mongoose from 'mongoose';
 import dg from 'debug';
 
+// Instruments
+import { getDb } from '../helpers';
+
 const debug = dg('db');
-const DB = process.env.DB;
+const DB = getDb();
 
 const mongooseOptions = {
     promiseLibrary:    global.Promise,
-    poolSize:          50,
+    poolSize:          10,
     keepAlive:         30000,
     connectTimeoutMS:  5000,
     reconnectTries:    Number.MAX_SAFE_INTEGER,
