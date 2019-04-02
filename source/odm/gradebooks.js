@@ -3,15 +3,21 @@ import mongoose from 'mongoose';
 // Document shape
 const schema = new mongoose.Schema(
     {
-        hash:  String,
+        hash: {
+            type:     String,
+            required: true,
+            unique:   true,
+        },
         image: String,
         year:  {
-            type:  Number,
-            index: true,
+            type:     Number,
+            required: true,
+            index:    true,
         },
         class: {
-            type:  String,
-            index: true,
+            type:     String,
+            required: true,
+            index:    true,
         },
         records: [
             {
