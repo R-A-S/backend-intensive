@@ -12,7 +12,7 @@ export class Parents {
     }
 
     async createPupils() {
-        const data = await parents.create();
+        const data = await parents.create(this.data);
 
         return data;
     }
