@@ -1,13 +1,18 @@
 // Core
 import dg from 'debug';
 
+// Instruments
+import { Classes } from '../../../controllers';
+
 const debug = dg('router:classes:class');
 
-export const get = (req, res) => {
+export const get = async (req, res) => {
     debug(`${req.method} — ${req.originalUrl}`);
 
     try {
-        const data = {};
+        const { classId: id } = req.params;
+        const classes = new Classes({ id });
+        const data = await classes.findById();
 
         res.status(200).json({ data });
     } catch (error) {
@@ -15,11 +20,14 @@ export const get = (req, res) => {
     }
 };
 
-export const post = (req, res) => {
+export const post = async (req, res) => {
     debug(`${req.method} — ${req.originalUrl}`);
 
     try {
-        const data = {};
+        const { classId: id } = req.params;
+        const { gradebook } = req.body;
+        const classes = new Classes({ id, gradebook });
+        const data = await classes.createByClassId();
 
         res.status(200).json({ data });
     } catch (error) {
