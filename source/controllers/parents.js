@@ -3,7 +3,7 @@ import { Parents as ParentsModel } from '../models';
 export class Parents {
     constructor(data) {
         this.models = {
-            parents: new ParentsModel(data)
+            parents: new ParentsModel(data),
         };
     }
 
