@@ -1,3 +1,7 @@
+// Core
+import v4 from 'uuid/v4';
+
+// Instruments
 import { parents } from '../odm';
 
 export class Parents {
@@ -12,7 +16,11 @@ export class Parents {
     }
 
     async createPupils() {
-        const data = await parents.create(this.data);
+        const pupil = {
+            hash: v4(),
+            ...this.data,
+        };
+        const data = await parents.create(pupil);
 
         return data;
     }
