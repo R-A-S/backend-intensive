@@ -6,11 +6,12 @@ import { Classes } from '../../controllers';
 
 const debug = dg('router:classes');
 
-export const get = (req, res) => {
+export const get = async (req, res) => {
     debug(`${req.method} — ${req.originalUrl}`);
 
     try {
-        const data = [];
+        const classes = new Classes();
+        const data = await classes.find();
 
         res.status(200).json({ data });
     } catch (error) {

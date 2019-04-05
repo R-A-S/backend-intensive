@@ -17,4 +17,10 @@ export class Gradebooks {
 
         return data;
     }
+
+    async find() {
+        const data = await gradebooks.find().lean();
+
+        return data;
+    }
 }

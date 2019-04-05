@@ -4,32 +4,32 @@ import mongoose from 'mongoose';
 const schema = new mongoose.Schema(
     {
         hash: {
-            type: String,
+            type:     String,
             required: true,
-            unique: true,
+            unique:   true,
         },
         order: {
-            type: Number,
+            type:     Number,
             required: true,
-            index: true,
+            index:    true,
         },
         title: {
-            type: String,
+            type:     String,
             required: true,
-            unique: true,
+            unique:   true,
         },
         image: String,
-        room: {
-            type: Number,
+        room:  {
+            type:     Number,
             required: true,
-            index: true,
+            index:    true,
         },
-        floor: Number,
+        floor:      Number,
         gradebooks: [
             {
                 gradebook: {
                     type: mongoose.SchemaTypes.ObjectId,
-                    ref: 'gradebooks',
+                    ref:  'gradebooks',
                 },
             },
         ],

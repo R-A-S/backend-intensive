@@ -23,7 +23,7 @@ export const post = async (req, res) => {
     debug(`${req.method} — ${req.originalUrl}`);
 
     try {
-        const parents = new Parents();
+        const parents = new Parents(req.body);
         const data = await parents.createPupils();
 
         res.status(200).json({ data });

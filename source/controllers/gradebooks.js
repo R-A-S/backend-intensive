@@ -12,4 +12,10 @@ export class Gradebooks {
 
         return data;
     }
+
+    async find() {
+        const data = await this.models.gradebooks.find();
+
+        return data;
+    }
 }

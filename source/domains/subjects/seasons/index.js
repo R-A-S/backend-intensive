@@ -1,13 +1,18 @@
 // Core
 import dg from 'debug';
 
+// Instruments
+import { Subjects } from '../../../controllers';
+
 const debug = dg('router:subjects:seasons');
 
-export const get = (req, res) => {
+export const get = async (req, res) => {
     debug(`${req.method} — ${req.originalUrl}`);
 
     try {
-        const data = [];
+        const { subjectsId: id } = req.params;
+        const subjects = new Subjects({ id });
+        const data = await subjects.findSeason();
 
         res.status(200).json({ data });
     } catch (error) {
@@ -15,11 +20,13 @@ export const get = (req, res) => {
     }
 };
 
-export const post = (req, res) => {
+export const post = async (req, res) => {
     debug(`${req.method} — ${req.originalUrl}`);
 
     try {
-        const data = [];
+        const { subjectsId } = req.params;
+        const subjects = new Subjects({ subjectsId, ...req.body });
+        const data = await subjects.findSeason();
 
         res.status(200).json({ data });
     } catch (error) {
