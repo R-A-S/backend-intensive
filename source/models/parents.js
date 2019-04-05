@@ -10,7 +10,7 @@ export class Parents {
     }
 
     async findAllPupils() {
-        const data = await parents.find();
+        const data = await parents.find().lean();
 
         return data;
     }

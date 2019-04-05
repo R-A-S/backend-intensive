@@ -13,14 +13,20 @@ export class Classes {
         return data;
     }
 
+    async find() {
+        const data = await this.models.classes.find();
+
+        return data;
+    }
+
     async findById() {
         const data = await this.models.classes.findById();
 
         return data;
     }
 
-    async createByClassId() {
-        const data = await this.models.classes.createByClassId();
+    async assignGradebook() {
+        const data = await this.models.classes.assignGradebook();
 
         return data;
     }

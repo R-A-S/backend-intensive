@@ -18,17 +18,24 @@ export class Classes {
         return data;
     }
 
+    async find() {
+        const data = await classes.find().lean();
+
+        return data;
+    }
+
     async findById() {
         const { id } = this.data;
         const data = await classes
             .findById(id)
             .populate({ path: 'gradebooks.gradebook', select: '-_id -__v' })
-            .select('-_id -__v');
+            .select('-_id -__v')
+            .lean();
 
         return data;
     }
 
-    async createByClassId() {
+    async assignGradebook() {
         const { id, gradebook } = this.data;
         const data = await classes.findByIdAndUpdate(
             id,
