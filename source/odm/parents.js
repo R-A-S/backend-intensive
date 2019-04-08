@@ -45,8 +45,7 @@ const schema = new mongoose.Schema(
         },
         pupils: [
             {
-                person: mongoose.SchemaTypes.ObjectId,
-                ref:    'pupils',
+                person: { type: mongoose.SchemaTypes.ObjectId, ref: 'pupils' },
             },
         ],
         description: String,

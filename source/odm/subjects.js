@@ -16,8 +16,7 @@ const schema = new mongoose.Schema(
         image:   String,
         seasons: [
             {
-                season: mongoose.SchemaTypes.ObjectId,
-                ref:    'seasons',
+                season: { type: mongoose.SchemaTypes.ObjectId, ref: 'seasons' },
             },
         ],
         description: String,

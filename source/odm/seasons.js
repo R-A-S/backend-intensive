@@ -25,8 +25,7 @@ const schema = new mongoose.Schema(
         },
         lessons: [
             {
-                lesson: mongoose.SchemaTypes.ObjectId,
-                ref:    'lessons',
+                lesson: { type: mongoose.SchemaTypes.ObjectId, ref: 'lessons' },
             },
         ],
         description: String,

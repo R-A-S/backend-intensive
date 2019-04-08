@@ -46,8 +46,7 @@ const schema = new mongoose.Schema(
         class:   { type: mongoose.SchemaTypes.ObjectId, ref: 'classes' },
         parents: [
             {
-                parent: mongoose.SchemaTypes.ObjectId,
-                ref:    'parents',
+                parent: { type: mongoose.SchemaTypes.ObjectId, ref: 'parents' },
             },
         ],
         description: String,

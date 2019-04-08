@@ -45,8 +45,7 @@ const schema = new mongoose.Schema(
         },
         subjects: [
             {
-                subject: mongoose.SchemaTypes.ObjectId,
-                ref:     'subjects',
+                subject: { type: mongoose.SchemaTypes.ObjectId, ref: 'subjects' },
             },
         ],
         description: String,
