@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { SubjectSubscriber } from '../../../../../Users/ras/AppData/Local/Microsoft/TypeScript/3.4/node_modules/rxjs/internal/Subject';
 
 // Document shape
 const schema = new mongoose.Schema(
