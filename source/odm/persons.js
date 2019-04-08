@@ -44,9 +44,11 @@ const schema = new mongoose.Schema(
             telegram: String,
         },
         class:   mongoose.SchemaTypes.ObjectId,
+        ref:     'classes',
         parents: [
             {
                 parent: mongoose.SchemaTypes.ObjectId,
+                ref:    'parents',
             },
         ],
         description: String,

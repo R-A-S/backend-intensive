@@ -20,11 +20,13 @@ const schema = new mongoose.Schema(
         image:   String,
         subject: {
             type:     mongoose.SchemaTypes.ObjectId,
+            ref:      'subjects',
             required: true,
         },
         lessons: [
             {
                 lesson: mongoose.SchemaTypes.ObjectId,
+                ref:    'lessons',
             },
         ],
         description: String,

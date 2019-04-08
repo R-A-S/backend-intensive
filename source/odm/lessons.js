@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { SubjectSubscriber } from '../../../../../Users/ras/AppData/Local/Microsoft/TypeScript/3.4/node_modules/rxjs/internal/Subject';
 
 // Document shape
 const schema = new mongoose.Schema(
@@ -20,10 +21,12 @@ const schema = new mongoose.Schema(
         image:   String,
         subject: {
             type:     mongoose.SchemaTypes.ObjectId,
+            ref:      'subjects',
             required: true,
         },
         season: {
             type:     mongoose.SchemaTypes.ObjectId,
+            ref:      'seasons',
             required: true,
         },
     },

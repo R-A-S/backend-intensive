@@ -17,6 +17,7 @@ const schema = new mongoose.Schema(
         seasons: [
             {
                 season: mongoose.SchemaTypes.ObjectId,
+                ref:    'seasons',
             },
         ],
         description: String,
