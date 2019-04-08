@@ -21,11 +21,11 @@ const schema = new mongoose.Schema(
         },
         records: [
             {
-                personHash:  mongoose.SchemaTypes.ObjectId,
-                teacherHash: mongoose.SchemaTypes.ObjectId,
-                subjectHash: mongoose.SchemaTypes.ObjectId,
-                seasonHash:  mongoose.SchemaTypes.ObjectId,
-                lessonHash:  mongoose.SchemaTypes.ObjectId,
+                personHash:  { type: mongoose.SchemaTypes.ObjectId, ref: 'persons' },
+                teacherHash: { type: mongoose.SchemaTypes.ObjectId, ref: 'teachers' },
+                subjectHash: { type: mongoose.SchemaTypes.ObjectId, ref: 'subjects' },
+                seasonHash:  { type: mongoose.SchemaTypes.ObjectId, ref: 'seasons' },
+                lessonHash:  { type: mongoose.SchemaTypes.ObjectId, ref: 'lessons' },
                 mark:        Number,
             },
         ],
