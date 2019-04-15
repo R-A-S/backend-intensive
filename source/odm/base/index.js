@@ -22,7 +22,6 @@ const schema = new mongoose.Schema(
         dateOfBirth: Date,
         sex:         String,
         description: String,
-        started:     Date,
     },
     {
         timestamps: {
