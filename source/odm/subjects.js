@@ -9,9 +9,10 @@ const schema = new mongoose.Schema(
             unique:   true,
         },
         title: {
-            type:     String,
-            required: true,
-            unique:   true,
+            type:      String,
+            maxlength: 30,
+            required:  true,
+            unique:    true,
         },
         image:   String,
         seasons: [
@@ -19,7 +20,7 @@ const schema = new mongoose.Schema(
                 season: mongoose.SchemaTypes.ObjectId,
             },
         ],
-        description: String,
+        description: { type: String, maxlength: 250 },
     },
     {
         timestamps: {

@@ -11,6 +11,8 @@ const schema = new mongoose.Schema(
         image: String,
         year:  {
             type:     Number,
+            min:      2019,
+            max:      2099,
             required: true,
             index:    true,
         },
@@ -26,10 +28,10 @@ const schema = new mongoose.Schema(
                 subjectHash: mongoose.SchemaTypes.ObjectId,
                 seasonHash:  mongoose.SchemaTypes.ObjectId,
                 lessonHash:  mongoose.SchemaTypes.ObjectId,
-                mark:        Number,
+                mark:        { type: Number, min: 0 },
             },
         ],
-        description: String,
+        description: { type: String, maxlength: 250 },
     },
     {
         timestamps: {

@@ -25,7 +25,7 @@ const schema = new mongoose.Schema(
         image:       String,
         dateOfBirth: {
             type: Date,
-            max:  () => Date.now() - 5.6802514 * 1e11, // 5.6802514 * 1e11 ← 18 years in ms
+            max:  () => Date.now() - 1.577 * 1e11, // 5.6802514 * 1e11 ← 18 years in ms
         },
         emails: [
             {
@@ -54,9 +54,10 @@ const schema = new mongoose.Schema(
             skype:    String,
             telegram: String,
         },
-        subjects: [
+        class:   mongoose.SchemaTypes.ObjectId,
+        parents: [
             {
-                subject: mongoose.SchemaTypes.ObjectId,
+                parent: mongoose.SchemaTypes.ObjectId,
             },
         ],
         description: { type: String, maxlength: 250 },
@@ -72,13 +73,5 @@ const schema = new mongoose.Schema(
 
 schema.index({ 'name.first': 1, 'name.last': 1 });
 
-schema.path('phones').validate(function(value) {
-    const regex = /^38\d{3}-\d{3}-\d{4}$/;
-
-    const isValid = value.every(({ phone }) => regex.test(phone));
-
-    return isValid;
-}, 'Phone should have format 38XXX-XXX-XXXX');
-
 // Collection
-export const teachers = mongoose.model('teachers', schema);
+export const persons = mongoose.model('persons', schema);

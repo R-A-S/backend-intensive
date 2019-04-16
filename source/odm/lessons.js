@@ -13,9 +13,10 @@ const schema = new mongoose.Schema(
             required: true,
         },
         title: {
-            type:     String,
-            required: true,
-            unique:   true,
+            type:      String,
+            maxlength: 30,
+            required:  true,
+            unique:    true,
         },
         image:   String,
         subject: {
