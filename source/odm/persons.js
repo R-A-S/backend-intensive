@@ -28,7 +28,7 @@ const schema = new mongoose.Schema(
         dateOfBirth: {
             type: Date,
             // eslint-disable-next-line no-mixed-operators
-            max:  () => Date.now() - 1.577 * 1e11,
+            max:  () => new Date(new Date().setFullYear(new Date().getFullYear() - 5)),
         },
         emails: [
             {

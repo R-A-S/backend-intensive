@@ -27,8 +27,7 @@ const schema = new mongoose.Schema(
         image:       { type: String, match: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/ },
         dateOfBirth: {
             type: Date,
-            // eslint-disable-next-line no-mixed-operators
-            max:  () => Date.now() - 5.6802514 * 1e11,
+            max:  () => new Date(new Date().setFullYear(new Date().getFullYear() - 18)),
         },
         emails: [
             {
