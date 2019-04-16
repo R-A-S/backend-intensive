@@ -18,9 +18,12 @@ const schema = new mongoose.Schema(
                 required: true,
             },
         },
-        image:       String,
+        image:       { type: String, match: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/ },
         dateOfBirth: Date,
-        sex:         String,
+        sex:         {
+            type: String,
+            enum: [ 'm', 'f' ],
+        },
         description: String,
     },
     {

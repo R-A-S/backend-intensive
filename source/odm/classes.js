@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import { gradebooks } from './index';
+
 // Document shape
 const schema = new mongoose.Schema(
     {
@@ -20,7 +22,7 @@ const schema = new mongoose.Schema(
             required:  true,
             unique:    true,
         },
-        image: String,
+        image: { type: String, match: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/ },
         room:  {
             type:     Number,
             min:      0,
@@ -31,8 +33,16 @@ const schema = new mongoose.Schema(
         gradebooks: [
             {
                 gradebook: {
-                    type: mongoose.SchemaTypes.ObjectId,
-                    ref:  'gradebooks',
+                    type:     mongoose.SchemaTypes.ObjectId,
+                    ref:      'gradebooks',
+                    validate: {
+                        validator(id) {
+                            return gradebooks.findById(id).lean();
+                        },
+                        message({ value }) {
+                            return `Gradebook with ID '${value}' does not exist in gradebooks collection`;
+                        },
+                    },
                 },
             },
         ],

@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import { classes, parents } from './index';
+
 // Document shape
 const schema = new mongoose.Schema(
     {
@@ -22,16 +24,17 @@ const schema = new mongoose.Schema(
                 required:  true,
             },
         },
-        image:       String,
+        image:       { type: String, match: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/ },
         dateOfBirth: {
             type: Date,
-            max:  () => Date.now() - 1.577 * 1e11, // 5.6802514 * 1e11 ← 18 years in ms
+            // eslint-disable-next-line no-mixed-operators
+            max:  () => Date.now() - 1.577 * 1e11,
         },
         emails: [
             {
                 email: {
                     type:     String,
-                    match:    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    match:    /^([\w\._]+)@\1\.([a-z]{2,6}\.?)$/,
                     required: true,
                     unique:   true,
                 },
@@ -54,10 +57,32 @@ const schema = new mongoose.Schema(
             skype:    String,
             telegram: String,
         },
-        class:   mongoose.SchemaTypes.ObjectId,
+        class: {
+            type:     mongoose.SchemaTypes.ObjectId,
+            ref:      'classes',
+            validate: {
+                validator(id) {
+                    return classes.findById(id).lean();
+                },
+                message({ value }) {
+                    return `Class with ID '${value}' does not exist in classes collection`;
+                },
+            },
+        },
         parents: [
             {
-                parent: mongoose.SchemaTypes.ObjectId,
+                parent: {
+                    type:     mongoose.SchemaTypes.ObjectId,
+                    ref:      'parents',
+                    validate: {
+                        validator(id) {
+                            return parents.findById(id).lean();
+                        },
+                        message({ value }) {
+                            return `Parent with ID '${value}' does not exist in parents collection`;
+                        },
+                    },
+                },
             },
         ],
         description: { type: String, maxlength: 250 },

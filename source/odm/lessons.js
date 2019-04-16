@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import { subjects, seasons } from './index';
+
 // Document shape
 const schema = new mongoose.Schema(
     {
@@ -18,14 +20,32 @@ const schema = new mongoose.Schema(
             required:  true,
             unique:    true,
         },
-        image:   String,
+        image:   { type: String, match: /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/ },
         subject: {
             type:     mongoose.SchemaTypes.ObjectId,
+            ref:      'subjects',
             required: true,
+            validate: {
+                validator(id) {
+                    return subjects.findById(id).lean();
+                },
+                message({ value }) {
+                    return `Subject with ID '${value}' does not exist in subjects collection`;
+                },
+            },
         },
         season: {
             type:     mongoose.SchemaTypes.ObjectId,
+            ref:      'seasons',
             required: true,
+            validate: {
+                validator(id) {
+                    return seasons.findById(id).lean();
+                },
+                message({ value }) {
+                    return `Season with ID '${value}' does not exist in seasons collection`;
+                },
+            },
         },
     },
     {
